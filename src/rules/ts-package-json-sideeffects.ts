@@ -1,6 +1,6 @@
 /**
- * @fileoverview Rule to force package.json's repository value to be set to github:Azure/azure-sdk-for-js.
- * @author Arpan Laha
+ * @fileoverview Rule to force package.json's sideEffects value to be set to false.
+ * @sideEffects Arpan Laha
  */
 
 import structure from "../utils/structure";
@@ -15,29 +15,28 @@ export = {
     type: "problem",
 
     docs: {
-      description:
-        "force package.json's repository value to be 'github:Azure/azure-sdk-for-js'",
+      description: "force package.json's sideEffects value to be false",
       category: "Best Practices",
       recommended: true,
       url:
-        "https://azuresdkspecs.z5.web.core.windows.net/TypeScriptSpec.html#ts-package-json-repo"
+        "https://azuresdkspecs.z5.web.core.windows.net/TypeScriptSpec.html#ts-package-json-sideeffects"
     },
     schema: [] // no options
   },
   create: function(context: Rule.RuleContext) {
     var checkers = structure(context, {
-      outer: "repository",
-      expectedValue: "github:Azure/azure-sdk-for-js",
+      outer: "sideEffects",
+      expectedValue: false,
       fileName: "package.json"
     });
     return {
       // callback functions
 
-      // check to see if repository exists at the outermost level
+      // check to see if sideEffects exists at the outermost level
       "VariableDeclarator > ObjectExpression": checkers.existsInFile,
 
-      // check the node corresponding to repository to see if it's value is github:Azure/azure-sdk-for-js
-      "VariableDeclarator > ObjectExpression > Property[key.value='repository']":
+      // check the node corresponding to sideEffects to see if it's value is false
+      "VariableDeclarator > ObjectExpression > Property[key.value='sideEffects']":
         checkers.outerMatchesExpected
     } as Rule.RuleListener;
   }
