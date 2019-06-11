@@ -1,5 +1,5 @@
 import { CLIEngine } from "eslint";
-import { rules, processors, configs } from "../dist/src";
+import plugin from "../dist/src";
 
 const cli = new CLIEngine({
   ignore: true,
@@ -16,15 +16,18 @@ const cli = new CLIEngine({
     "ts-config-module": "error",
     "ts-config-no-experimentaldecorators": "error",
     "ts-config-strict": "error",
+    "ts-package-json-author": "error",
+    "ts-package-json-bugs": "error",
+    "ts-package-json-license": "error",
     "ts-package-json-repo": "error",
-    "ts-package-json-bugs": "error"
+    "ts-package-json-sideeffects": "error"
   } as any
 });
 
 cli.addPlugin("eslint-plugin-azure", {
-  rules: rules,
-  processors: processors,
-  configs: configs
+  rules: plugin.rules,
+  processors: plugin.processors,
+  configs: plugin.configs
 });
 
 const report = cli.executeOnFiles(["tests/examples"]);
