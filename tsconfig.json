@@ -14,5 +14,5 @@
     "target": "es6",
     "types": ["chai", "eslint", "estree", "mocha"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "tests/example.ts"]
 }

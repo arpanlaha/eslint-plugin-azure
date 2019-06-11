@@ -13,8 +13,9 @@
   "author": "Arpan Laha",
   "main": "dist/src/index.js",
   "scripts": {
-    "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
-    "test": "ts-mocha -p tsconfig.json tests/**/*.ts"
+    "format": "prettier --write \"./**/*.{ts,json,md}\"",
+    "test": "ts-mocha -p tsconfig.json tests/**/*.ts",
+    "test-example": "ts-mocha -p tsconfig.json tests/example.ts"
   },
   "repository": {
     "type": "git",
